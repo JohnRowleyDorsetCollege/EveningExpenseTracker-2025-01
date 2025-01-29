@@ -25,6 +25,7 @@
 
          const statesDropdown = document.querySelector("#states");
          statesDropdown.length = 0;
+          statesDropdown.options.add(new Option('Choose a state','0'))
 
          const response = await fetch(`/CascadeDemo/GetStates?country=${country}`);
          const states = await response.json();
@@ -34,8 +35,6 @@
                 option.textContent = state;
                 statesDropdown.appendChild(option);
          })
-
-
          
     }
 
