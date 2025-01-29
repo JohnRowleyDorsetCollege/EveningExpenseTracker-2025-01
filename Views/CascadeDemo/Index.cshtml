@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Cascade Demo - Choose a Country</h1>
+<select id="countries" name="countries" class="form-control" onchange="LoadStates()">
+    <option>Select a Country</option>
+    @foreach(var country in ViewBag.Countries) {
+
+        <option value="@country">@country</option>
+    }
+
+</select>
+
+<select id="states" name="states" class="form-control">
+    <option>Select a State</option>
+</select>
+
+<script>
+
+    async function LoadStates() {
+        console.log('Loading states');
+          const country = document.getElementById('countries').value;
+
+         const statesDropdown = document.querySelector("#states");
+         statesDropdown.length = 0;
+
+         const response = await fetch(`/CascadeDemo/GetStates?country=${country}`);
+         const states = await response.json();
+         states.forEach(state => {
+                 const option = document.createElement('option');
+                option.value = state;
+                option.textContent = state;
+                statesDropdown.appendChild(option);
+         })
+
+
+         
+    }
+
+
+</script>

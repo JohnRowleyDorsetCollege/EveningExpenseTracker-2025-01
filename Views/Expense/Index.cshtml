@@ -1,0 +1,39 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Expense>
+<h1>Expense Tracker</h1>
+<hr />
+<a class="btn btn-primary" asp-controller="Expense" asp-action="CreateEditExpense">Create New</a>
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Value</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Value</td>
+                    <td>@item.Description</td>
+                    <td><a class="btn btn-primary" asp-action="CreateEditExpense" asp-route-id="@item.Id">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
